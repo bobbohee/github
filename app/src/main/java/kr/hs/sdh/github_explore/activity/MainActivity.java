@@ -11,7 +11,10 @@ import kr.hs.sdh.github_explore.listener.OnItemSelectedListener;
 public class MainActivity extends AppCompatActivity {
 
     private Spinner sinceSpinner;
-    private ArrayAdapter arrayAdapter;
+    private Spinner languageSpinner;
+
+    private ArrayAdapter sinceArrayAdapter;
+    private ArrayAdapter languageArrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,12 +26,19 @@ public class MainActivity extends AppCompatActivity {
 
     public void setViews() {
         sinceSpinner = (Spinner) findViewById(R.id.since_spinner);
-        arrayAdapter = ArrayAdapter.createFromResource(this, R.array.since, android.R.layout.simple_spinner_dropdown_item);
+        languageSpinner = (Spinner) findViewById(R.id.language_spinner);
 
-        OnItemSelectedListener itemSelected = new OnItemSelectedListener(arrayAdapter);
+        sinceArrayAdapter = ArrayAdapter.createFromResource(this, R.array.since, android.R.layout.simple_spinner_dropdown_item);
+        languageArrayAdapter = ArrayAdapter.createFromResource(this, R.array.language, android.R.layout.simple_spinner_dropdown_item);
 
-        sinceSpinner.setAdapter(arrayAdapter);
-        sinceSpinner.setOnItemSelectedListener(itemSelected);
+        sinceSpinner.setAdapter(sinceArrayAdapter);
+        languageSpinner.setAdapter(languageArrayAdapter);
+
+        OnItemSelectedListener sinceItemSelected = new OnItemSelectedListener(sinceArrayAdapter);
+        OnItemSelectedListener languageItemSelected = new OnItemSelectedListener(languageArrayAdapter);
+
+        sinceSpinner.setOnItemSelectedListener(sinceItemSelected);
+        languageSpinner.setOnItemSelectedListener(languageItemSelected);
     }
 
 }

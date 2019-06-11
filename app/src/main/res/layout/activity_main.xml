@@ -6,16 +6,73 @@
     tools:context=".activity.MainActivity"
     android:orientation="vertical">
 
+    <!-- header -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:padding="18dp"
+        android:background="#24292e"
+        android:orientation="horizontal">
+
+        <!-- hamburger-->
+        <LinearLayout
+            android:layout_width="22dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="#ffffff"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="#ffffff"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="#ffffff"/>
+
+        </LinearLayout>
+
+        <!-- logo -->
+        <ImageView
+            android:layout_centerInParent="true"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/white_logo"/>
+
+    </RelativeLayout>
+
+    <!-- main -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="#fafbfc"
-        android:paddingTop="40dp"
-        android:paddingRight="50dp"
-        android:paddingBottom="40dp"
-        android:paddingLeft="50dp">
-        
+        android:paddingTop="20dp"
+        android:paddingRight="30dp"
+        android:paddingBottom="20dp"
+        android:paddingLeft="30dp">
+
+        <!-- text-box -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -26,9 +83,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Trending"
-                android:textSize="40dp"
+                android:textSize="34dp"
                 android:textColor="#24292e"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="5dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -36,16 +93,35 @@
                 android:text="See what the GitHub community is most excited about "
                 android:textSize="20dp"
                 android:textColor="#586069"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="10dp"
                 android:textAlignment="center"/>
             
         </LinearLayout>
 
-        
-        <Spinner
-            android:id="@+id/since_spinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        <!-- spinner -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/since_spinner"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <Spinner
+                android:id="@+id/language_spinner"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 

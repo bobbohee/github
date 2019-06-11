@@ -5,4 +5,15 @@
         <item>this week</item>
         <item>this month</item>
     </string-array>
+    <string-array name="language">
+        <item>All</item>
+        <item>Unknown</item>
+        <item>HTML</item>
+        <item>Java</item>
+        <item>JavaScript</item>
+        <item>Kotlin</item>
+        <item>PHP</item>
+        <item>TypeScript</item>
+        <item>Vue</item>
+    </string-array>
 </resources>

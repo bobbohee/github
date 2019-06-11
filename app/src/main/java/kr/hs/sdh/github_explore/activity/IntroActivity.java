@@ -17,6 +17,7 @@ public class IntroActivity extends AppCompatActivity {
             if (msg.what == 1) {
                 Intent intent = new Intent(IntroActivity.this, MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         }
     };

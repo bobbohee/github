@@ -7,7 +7,8 @@ import android.widget.Toast;
 
 public class OnItemSelectedListener implements AdapterView.OnItemSelectedListener {
 
-    private String since;
+    private String since = "daily";
+    private String language = "";
     private ArrayAdapter arrayAdapter;
 
     public OnItemSelectedListener() {
@@ -20,9 +21,9 @@ public class OnItemSelectedListener implements AdapterView.OnItemSelectedListene
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String sinceCode = arrayAdapter.getItem(position) + "";
+        String item = arrayAdapter.getItem(position) + "";
 
-        switch (sinceCode) {
+        switch (item) {
             case "today":
                 since = "daily";
                 break;
@@ -32,9 +33,34 @@ public class OnItemSelectedListener implements AdapterView.OnItemSelectedListene
             case "this month":
                 since = "monthly";
                 break;
+            case "All":
+                language = "";
+                break;
+            case "Unknown":
+                language = "unknown";
+                break;
+            case "HTML":
+                language = "html";
+                break;
+            case "Java":
+                language = "java";
+                break;
+            case "JavaScript":
+                language = "javascript";
+                break;
+            case "Kotlin":
+                language = "kotlin";
+                break;
+            case "PHP":
+                language = "php";
+                break;
+            case "TypeScript":
+                language = "typescript";
+                break;
+            case "Vue":
+                language = "vue";
+                break;
         }
-
-        Toast.makeText(parent.getContext(), since, Toast.LENGTH_SHORT).show();
     }
 
     @Override
