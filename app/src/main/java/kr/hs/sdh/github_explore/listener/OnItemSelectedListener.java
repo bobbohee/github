@@ -3,7 +3,8 @@ package kr.hs.sdh.github_explore.listener;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Toast;
+
+import kr.hs.sdh.github_explore.thread.TrendThread;
 
 public class OnItemSelectedListener implements AdapterView.OnItemSelectedListener {
 
@@ -11,9 +12,7 @@ public class OnItemSelectedListener implements AdapterView.OnItemSelectedListene
     private String language = "";
     private ArrayAdapter arrayAdapter;
 
-    public OnItemSelectedListener() {
-
-    }
+    public OnItemSelectedListener() { }
 
     public OnItemSelectedListener(ArrayAdapter arrayAdapter) {
         this.arrayAdapter = arrayAdapter;
@@ -61,6 +60,15 @@ public class OnItemSelectedListener implements AdapterView.OnItemSelectedListene
                 language = "vue";
                 break;
         }
+
+        TrendThread trendThread = new TrendThread();
+        Runnable runnable = trendThread;
+
+        trendThread.setSince(since);
+        trendThread.setLanguage(language);
+
+        Thread thread = new Thread(runnable);
+        thread.start();
     }
 
     @Override
