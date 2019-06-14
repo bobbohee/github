@@ -5,8 +5,12 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import java.util.ArrayList;
+
 import kr.hs.sdh.github_explore.R;
 import kr.hs.sdh.github_explore.listener.OnItemSelectedListener;
+import kr.hs.sdh.github_explore.listview.TrendListview;
+import kr.hs.sdh.github_explore.thread.TrendThread;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         setViews();
+        setTrend();
     }
 
     public void setViews() {
@@ -39,6 +44,10 @@ public class MainActivity extends AppCompatActivity {
 
         sinceSpinner.setOnItemSelectedListener(sinceItemSelected);
         languageSpinner.setOnItemSelectedListener(languageItemSelected);
+    }
+
+    public void setTrend() {
+        ArrayList<TrendListview> arrayList = new TrendThread().getArrayList();
     }
 
 }

@@ -6,6 +6,9 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
+import kr.hs.sdh.github_explore.listview.TrendListview;
 
 public class TrendThread implements Runnable {
 
@@ -13,12 +16,15 @@ public class TrendThread implements Runnable {
     private String language = "";
     private String url;
     private boolean flag;
+    private ArrayList<TrendListview> arrayList;
 
     public TrendThread() { }
 
     @Override
     public void run() {
         flag = true;
+        arrayList = new ArrayList<>();
+
         while(flag) {
             try {
                 url = "https://github.com/trending/" + language + "?since=" + since;
@@ -27,6 +33,8 @@ public class TrendThread implements Runnable {
                 flag = false;
 
                 for(Element article: articles) {
+                    TrendListview trendListview = new TrendListview();
+
                     Elements h1s = article.getElementsByTag("h1");
                     Elements ps = article.getElementsByTag("p");
 
@@ -34,13 +42,22 @@ public class TrendThread implements Runnable {
                         Elements as = h1.getElementsByTag("a");
 
                         for (Element a: as) {
-                            String title = a.text();
+                            String title[] = a.text().split("/");
+                            String developer = title[0] + " / ";
+                            String project = title[1];
+
+                            trendListview.setDeveloper(developer);
+                            trendListview.setProject(project);
                         }
                     }
 
                     for(Element p: ps) {
                         String description = p.text();
+
+                        trendListview.setDescription(description);
                     }
+
+                    arrayList.add(trendListview);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -55,6 +72,10 @@ public class TrendThread implements Runnable {
 
     public void setLanguage(String language) {
         this.language = language;
+    }
+
+    public ArrayList<TrendListview> getArrayList() {
+        return arrayList;
     }
 
 }
