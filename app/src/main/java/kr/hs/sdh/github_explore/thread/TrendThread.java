@@ -1,5 +1,8 @@
 package kr.hs.sdh.github_explore.thread;
 
+import android.os.Handler;
+import android.os.Message;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -17,8 +20,13 @@ public class TrendThread implements Runnable {
     private String url;
     private boolean flag;
     private ArrayList<TrendListview> arrayList;
+    private Handler handler;
 
     public TrendThread() { }
+
+    public TrendThread(Handler handler) {
+        this.handler = handler;
+    }
 
     @Override
     public void run() {
@@ -64,6 +72,10 @@ public class TrendThread implements Runnable {
                 flag = false;
             }
         }
+
+        Message msg = new Message();
+        msg.obj = arrayList;
+        handler.sendMessage(msg);
     }
 
     public void setSince(String since) {
@@ -72,10 +84,6 @@ public class TrendThread implements Runnable {
 
     public void setLanguage(String language) {
         this.language = language;
-    }
-
-    public ArrayList<TrendListview> getArrayList() {
-        return arrayList;
     }
 
 }

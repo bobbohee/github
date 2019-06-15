@@ -53,4 +53,8 @@ public class TrendAdapter extends BaseAdapter {
         return convertView;
     }
 
+    public void addItem(ArrayList<TrendListview> arrayList) {
+        this.arrayList = arrayList;
+    }
+
 }

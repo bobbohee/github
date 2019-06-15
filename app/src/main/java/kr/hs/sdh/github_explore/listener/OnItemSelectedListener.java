@@ -1,5 +1,6 @@
 package kr.hs.sdh.github_explore.listener;
 
+import android.os.Handler;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -11,10 +12,12 @@ public class OnItemSelectedListener implements AdapterView.OnItemSelectedListene
     private String since = "daily";
     private String language = "";
     private ArrayAdapter arrayAdapter;
+    private Handler handler;
 
     public OnItemSelectedListener() { }
 
-    public OnItemSelectedListener(ArrayAdapter arrayAdapter) {
+    public OnItemSelectedListener(Handler handler, ArrayAdapter arrayAdapter) {
+        this.handler = handler;
         this.arrayAdapter = arrayAdapter;
     }
 
@@ -61,7 +64,7 @@ public class OnItemSelectedListener implements AdapterView.OnItemSelectedListene
                 break;
         }
 
-        TrendThread trendThread = new TrendThread();
+        TrendThread trendThread = new TrendThread(handler);
         Runnable runnable = trendThread;
 
         trendThread.setSince(since);
