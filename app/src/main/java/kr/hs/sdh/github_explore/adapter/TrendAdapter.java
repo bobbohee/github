@@ -1,9 +1,12 @@
 package kr.hs.sdh.github_explore.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.media.Image;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,42 +82,70 @@ public class TrendAdapter extends BaseAdapter {
     }
 
     public Drawable setImgLanguage(String language) {
-        Drawable imgLanguage;
+        int languageXml = 0;
 
         switch (language) {
             case "":
-                imgLanguage = ContextCompat.getDrawable(context, R.drawable.oval_unknown);
+                languageXml = R.drawable.oval_unknown;
+                break;
+            case "C":
+                languageXml = R.drawable.oval_c;
+                break;
+            case "C++":
+                languageXml = R.drawable.oval_cpp;
+                break;
+            case "C#":
+                languageXml = R.drawable.oval_cs;
+                break;
+            case "CSS":
+                languageXml = R.drawable.oval_css;
+                break;
+            case "Dart":
+                languageXml = R.drawable.oval_dart;
+                break;
+            case "Go":
+                languageXml = R.drawable.oval_go;
                 break;
             case "HTML":
-                imgLanguage = ContextCompat.getDrawable(context, R.drawable.oval_html);
+                languageXml = R.drawable.oval_html;
                 break;
             case "Java":
-                imgLanguage = ContextCompat.getDrawable(context, R.drawable.oval_java);
+                languageXml = R.drawable.oval_java;
                 break;
             case "JavaScript":
-                imgLanguage = ContextCompat.getDrawable(context, R.drawable.oval_javascript);
+                languageXml = R.drawable.oval_javascript;
+                break;
+            case "Jupyter Notebook":
+                languageXml = R.drawable.oval_jupyter_notebook;
                 break;
             case "Kotlin":
-                imgLanguage = ContextCompat.getDrawable(context, R.drawable.oval_kotlin);
+                languageXml = R.drawable.oval_kotlin;
                 break;
             case "PHP":
-                imgLanguage = ContextCompat.getDrawable(context, R.drawable.oval_php);
-                break;
-            case "TypeScript":
-                imgLanguage = ContextCompat.getDrawable(context, R.drawable.oval_typescript);
-                break;
-            case "Vue":
-                imgLanguage = ContextCompat.getDrawable(context, R.drawable.oval_vue);
+                languageXml = R.drawable.oval_php;
                 break;
             case "Python":
-                imgLanguage = ContextCompat.getDrawable(context, R.drawable.oval_python);
+                languageXml = R.drawable.oval_python;
+                break;
+            case "Scala":
+                languageXml = R.drawable.oval_scala;
+                break;
+            case "Shell":
+                languageXml = R.drawable.oval_shell;
+                break;
+            case "TypeScript":
+                languageXml = R.drawable.oval_typescript;
+                break;
+            case "Vue":
+                languageXml = R.drawable.oval_vue;
                 break;
             default:
-                imgLanguage = ContextCompat.getDrawable(context, R.drawable.oval_other);
+                languageXml = R.drawable.oval_other;
                 break;
         }
 
-        return imgLanguage;
+        Drawable languageDraw = ContextCompat.getDrawable(context, languageXml);
+        return languageDraw;
     }
 
 }
