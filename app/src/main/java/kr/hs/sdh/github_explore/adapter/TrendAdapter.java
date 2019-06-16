@@ -10,11 +10,11 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import kr.hs.sdh.github_explore.R;
-import kr.hs.sdh.github_explore.listview.TrendListview;
+import kr.hs.sdh.github_explore.listview.TrendListView;
 
 public class TrendAdapter extends BaseAdapter {
 
-    private ArrayList<TrendListview> arrayList = new ArrayList<>();
+    private ArrayList<TrendListView> arrayList = new ArrayList<>();
 
     @Override
     public int getCount() {
@@ -44,7 +44,7 @@ public class TrendAdapter extends BaseAdapter {
         TextView txtProject = (TextView) convertView.findViewById(R.id.txt_project);
         TextView txtDescription = (TextView) convertView.findViewById(R.id.txt_description);
 
-        TrendListview trendListview = arrayList.get(position);
+        TrendListView trendListview = arrayList.get(position);
 
         txtDeveloper.setText(trendListview.getDeveloper());
         txtProject.setText(trendListview.getProject());
@@ -53,7 +53,7 @@ public class TrendAdapter extends BaseAdapter {
         return convertView;
     }
 
-    public void addItem(ArrayList<TrendListview> arrayList) {
+    public void addItem(ArrayList<TrendListView> arrayList) {
         this.arrayList = arrayList;
     }
 

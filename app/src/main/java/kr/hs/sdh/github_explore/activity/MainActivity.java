@@ -4,37 +4,45 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import kr.hs.sdh.github_explore.R;
 import kr.hs.sdh.github_explore.adapter.TrendAdapter;
 import kr.hs.sdh.github_explore.listener.OnItemSelectedListener;
-import kr.hs.sdh.github_explore.listview.TrendListview;
+import kr.hs.sdh.github_explore.listview.TrendListView;
 
 public class MainActivity extends AppCompatActivity {
 
+    private TextView txtTrending;
     private Spinner sinceSpinner;
     private Spinner languageSpinner;
     private ListView listView;
 
-    private ArrayList<TrendListview> arrayList;
+    private String since;
+    private String trending = "See what the GitHub community is most excited about ";
+
     private TrendAdapter trendAdapter;
-    private OnItemSelectedListener sinceItemSelected;
-    private OnItemSelectedListener languageItemSelected;
+    private ArrayList<TrendListView> arrayList;
 
     private ArrayAdapter sinceArrayAdapter;
     private ArrayAdapter languageArrayAdapter;
 
+    private OnItemSelectedListener sinceItemSelected;
+    private OnItemSelectedListener languageItemSelected;
+
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            arrayList = (ArrayList<TrendListview>) msg.obj;
+            arrayList = (ArrayList<TrendListView>) msg.obj;
             trendAdapter.addItem(arrayList);
             listView.setAdapter(trendAdapter);
+            setTrending(arrayList.get(0).getSince());
         }
     };
 
@@ -47,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setViews() {
+        txtTrending = (TextView) findViewById(R.id.txt_trending);
         sinceSpinner = (Spinner) findViewById(R.id.since_spinner);
         languageSpinner = (Spinner) findViewById(R.id.language_spinner);
         listView = (ListView) findViewById(R.id.list_view);
@@ -62,6 +71,22 @@ public class MainActivity extends AppCompatActivity {
         languageItemSelected = new OnItemSelectedListener(handler, languageArrayAdapter);
         sinceSpinner.setOnItemSelectedListener(sinceItemSelected);
         languageSpinner.setOnItemSelectedListener(languageItemSelected);
+    }
+
+    public void setTrending(String since) {
+        switch (since) {
+            case "daily":
+                this.since = "today";
+                break;
+            case "weekly":
+                this.since = "this week";
+                break;
+            case "monthly":
+                this.since = "this month";
+                break;
+        }
+
+        txtTrending.setText(trending + this.since);
     }
 
 }

@@ -2,6 +2,7 @@ package kr.hs.sdh.github_explore.thread;
 
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -11,7 +12,7 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import kr.hs.sdh.github_explore.listview.TrendListview;
+import kr.hs.sdh.github_explore.listview.TrendListView;
 
 public class TrendThread implements Runnable {
 
@@ -19,7 +20,7 @@ public class TrendThread implements Runnable {
     private String language = "";
     private String url;
     private boolean flag;
-    private ArrayList<TrendListview> arrayList;
+    private ArrayList<TrendListView> arrayList;
     private Handler handler;
 
     public TrendThread() { }
@@ -41,7 +42,7 @@ public class TrendThread implements Runnable {
                 flag = false;
 
                 for(Element article: articles) {
-                    TrendListview trendListview = new TrendListview();
+                    TrendListView trendListview = new TrendListView();
 
                     Elements h1s = article.getElementsByTag("h1");
                     Elements ps = article.getElementsByTag("p");
@@ -51,7 +52,7 @@ public class TrendThread implements Runnable {
 
                         for (Element a: as) {
                             String title[] = a.text().split("/");
-                            String developer = title[0] + " / ";
+                            String developer = title[0] + "/";
                             String project = title[1];
 
                             trendListview.setDeveloper(developer);
@@ -65,6 +66,7 @@ public class TrendThread implements Runnable {
                         trendListview.setDescription(description);
                     }
 
+                    trendListview.setSince(since);
                     arrayList.add(trendListview);
                 }
             } catch (IOException e) {

@@ -1,10 +1,13 @@
 package kr.hs.sdh.github_explore.listview;
 
-public class TrendListview {
+public class TrendListView {
 
+    String since;
     String developer;
     String project;
     String description;
+
+    public String getSince() { return since; }
 
     public String getDeveloper() {
         return developer;
@@ -17,6 +20,8 @@ public class TrendListview {
     public String getDescription() {
         return description;
     }
+
+    public void setSince(String since) { this.since = since; }
 
     public void setDeveloper(String developer) {
         this.developer = developer;
