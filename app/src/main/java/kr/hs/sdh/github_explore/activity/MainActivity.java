@@ -4,7 +4,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -60,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         languageSpinner = (Spinner) findViewById(R.id.language_spinner);
         listView = (ListView) findViewById(R.id.list_view);
 
-        trendAdapter = new TrendAdapter();
+        trendAdapter = new TrendAdapter(this);
 
         sinceArrayAdapter = ArrayAdapter.createFromResource(this, R.array.since, android.R.layout.simple_spinner_dropdown_item);
         languageArrayAdapter = ArrayAdapter.createFromResource(this, R.array.language, android.R.layout.simple_spinner_dropdown_item);

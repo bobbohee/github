@@ -1,5 +1,6 @@
 package kr.hs.sdh.github_explore.thread;
 
+import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -21,6 +22,7 @@ public class TrendThread implements Runnable {
     private String url;
     private boolean flag;
     private ArrayList<TrendListView> arrayList;
+    private Context context;
     private Handler handler;
 
     public TrendThread() { }
@@ -42,32 +44,36 @@ public class TrendThread implements Runnable {
                 flag = false;
 
                 for(Element article: articles) {
-                    TrendListView trendListview = new TrendListView();
+                    TrendListView trendListView = new TrendListView();
 
-                    Elements h1s = article.getElementsByTag("h1");
+                    // require -> developer, repository
+                    Element h1 = article.getElementsByTag("h1").get(0);
+                    String project[] = h1.getElementsByTag("a").get(0).text().split("/");
+                    String developer = project[0] + "/";
+                    String repository = project[1];
+                    trendListView.setDeveloper(developer);
+                    trendListView.setRepository(repository);
+
+                    // not require -> description
                     Elements ps = article.getElementsByTag("p");
+                    String description = ps.size() > 0 ? ps.get(0).text() : "";
+                    trendListView.setDescription(description);
 
-                    for(Element h1: h1s) {
-                        Elements as = h1.getElementsByTag("a");
+                    // not require -> star, share
+                    Element div = article.getElementsByTag("div").get(1);
+                    Elements spans = div.getElementsByTag("span");
+                    Elements as = div.getElementsByTag("a");
+                    String star = as.size() > 0 ? as.get(0).text() : "";
+                    String share = as.size() > 1 ? as.get(1).text() : "";
+                    trendListView.setStar(star);
+                    trendListView.setShare(share);
 
-                        for (Element a: as) {
-                            String title[] = a.text().split("/");
-                            String developer = title[0] + "/";
-                            String project = title[1];
+                    // not require -> language
+                    String repoLanguage = spans.size() > 2 ? spans.get(2).text() : "";
+                    trendListView.setLanguage(repoLanguage);
 
-                            trendListview.setDeveloper(developer);
-                            trendListview.setProject(project);
-                        }
-                    }
-
-                    for(Element p: ps) {
-                        String description = p.text();
-
-                        trendListview.setDescription(description);
-                    }
-
-                    trendListview.setSince(since);
-                    arrayList.add(trendListview);
+                    trendListView.setSince(since);
+                    arrayList.add(trendListView);
                 }
             } catch (IOException e) {
                 e.printStackTrace();

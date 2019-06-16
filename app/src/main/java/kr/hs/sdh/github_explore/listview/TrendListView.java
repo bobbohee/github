@@ -4,35 +4,66 @@ public class TrendListView {
 
     String since;
     String developer;
-    String project;
+    String repository;
     String description;
+    String language;
+    String star;
+    String share;
 
-    public String getSince() { return since; }
+    public String getSince() {
+        return since;
+    }
+
+    public void setSince(String since) {
+        this.since = since;
+    }
 
     public String getDeveloper() {
         return developer;
     }
 
-    public String getProject() {
-        return project;
+    public void setDeveloper(String developer) {
+        this.developer = developer;
+    }
+
+    public String getRepository() {
+        return repository;
+    }
+
+    public void setRepository(String repository) {
+        this.repository = repository;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setSince(String since) { this.since = since; }
-
-    public void setDeveloper(String developer) {
-        this.developer = developer;
-    }
-
-    public void setProject(String project) {
-        this.project = project;
-    }
-
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    public String getStar() {
+        return star;
+    }
+
+    public void setStar(String star) {
+        this.star = star;
+    }
+
+    public String getShare() {
+        return share;
+    }
+
+    public void setShare(String share) {
+        this.share = share;
     }
 
 }
