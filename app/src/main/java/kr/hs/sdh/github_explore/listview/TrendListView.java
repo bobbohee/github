@@ -2,13 +2,13 @@ package kr.hs.sdh.github_explore.listview;
 
 public class TrendListView {
 
-    String since;
-    String developer;
-    String repository;
-    String description;
-    String language;
-    String star;
-    String share;
+    private String since;
+    private String developer;
+    private String repository;
+    private String description;
+    private String language;
+    private String star;
+    private String share;
 
     public String getSince() {
         return since;

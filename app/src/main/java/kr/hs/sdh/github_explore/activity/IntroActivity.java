@@ -18,6 +18,7 @@ public class IntroActivity extends AppCompatActivity {
                 Intent intent = new Intent(IntroActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
+                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
             }
         }
     };
