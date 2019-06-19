@@ -6,7 +6,10 @@
     android:orientation="vertical"
     tools:context=".activity.MainActivity">
 
-    <!-- header -->
+    <!-- ================== -->
+    <!-- = header 레이아웃 = -->
+    <!-- ================== -->
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="72dp"
@@ -16,6 +19,7 @@
 
         <!-- hamburger-->
         <LinearLayout
+            android:id="@+id/linear_hamburger"
             android:layout_width="22dp"
             android:layout_height="20dp"
             android:layout_marginLeft="8dp"
@@ -61,80 +65,155 @@
 
     </RelativeLayout>
 
-    <!-- main -->
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#fafbfc"
-        android:orientation="vertical"
-        android:paddingLeft="30dp"
-        android:paddingTop="20dp"
-        android:paddingRight="30dp"
-        android:paddingBottom="20dp">
+        android:layout_height="match_parent">
 
-        <!-- text-box -->
+        <!-- ================= -->
+        <!-- = menu 레이아웃 = -->
+        <!-- ================= -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:background="#24292e"
+            android:orientation="vertical"
+            android:paddingLeft="18dp"
+            android:paddingTop="14dp"
+            android:paddingRight="18dp"
+            android:paddingBottom="14dp"
+            android:visibility="visible">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <EditText
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:text="Trending"
-                android:textColor="#24292e"
-                android:textSize="28sp" />
-
-            <TextView
-                android:id="@+id/txt_trending"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="See what the GitHub community is most excited about today"
-                android:textAlignment="center"
-                android:textColor="#586069"
-                android:textSize="19sp" />
-
-        </LinearLayout>
-
-        <!-- spinner -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Spinner
-                android:id="@+id/since_spinner"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="4" />
+                android:layout_marginBottom="14dp"
+                android:background="#3f4448"
+                android:hint="Search or jump to..."
+                android:padding="8dp"
+                android:textColorHint="#8d9092" />
 
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="12dp"
+                android:background="#3f4448" />
 
-            <Spinner
-                android:id="@+id/language_spinner"
-                android:layout_width="0dp"
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="4" />
+                android:layout_marginBottom="12dp"
+                android:paddingLeft="4dp"
+                android:text="Explore"
+                android:textColor="#ffffff"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="12dp"
+                android:background="#3f4448" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:paddingLeft="4dp"
+                android:text="park-bohee"
+                android:textColor="#ffffff"
+                android:textSize="18dp"
+                android:textStyle="bold" />
 
         </LinearLayout>
+        <!-- ================= -->
 
-    </LinearLayout>
+        <!-- ================= -->
+        <!-- = trend 레이아웃 = -->
+        <!-- ================= -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="invisible">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#e1e4e8" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fafbfc"
+                android:orientation="vertical"
+                android:paddingLeft="30dp"
+                android:paddingTop="20dp"
+                android:paddingRight="30dp"
+                android:paddingBottom="20dp">
 
-    <ListView
-        android:id="@+id/list_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#ffffff" />
+                <!-- text-box -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:text="Trending"
+                        android:textColor="#24292e"
+                        android:textSize="28sp" />
+
+                    <TextView
+                        android:id="@+id/txt_trending"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="See what the GitHub community is most excited about today"
+                        android:textAlignment="center"
+                        android:textColor="#586069"
+                        android:textSize="19sp" />
+
+                </LinearLayout>
+
+                <!-- spinner -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Spinner
+                        android:id="@+id/since_spinner"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <Spinner
+                        android:id="@+id/language_spinner"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#e1e4e8" />
+
+            <ListView
+                android:id="@+id/list_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#ffffff" />
+
+        </LinearLayout>
+        <!-- ================= -->
+
+    </FrameLayout>
 
 </LinearLayout>

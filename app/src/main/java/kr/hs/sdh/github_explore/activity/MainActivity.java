@@ -5,6 +5,7 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 
 import kr.hs.sdh.github_explore.R;
 import kr.hs.sdh.github_explore.adapter.TrendAdapter;
+import kr.hs.sdh.github_explore.listener.OnClickListener;
 import kr.hs.sdh.github_explore.listener.OnItemSelectedListener;
 import kr.hs.sdh.github_explore.listview.TrendListView;
 
@@ -22,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private Spinner sinceSpinner;
     private Spinner languageSpinner;
     private ListView listView;
+    private LinearLayout linearHamburger;
 
     private String since;
     private String trending = "See what the GitHub community is most excited about ";
@@ -32,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayAdapter sinceArrayAdapter;
     private ArrayAdapter languageArrayAdapter;
 
+    private OnClickListener clickListener;
     private OnItemSelectedListener sinceItemSelected;
     private OnItemSelectedListener languageItemSelected;
 
@@ -58,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         sinceSpinner = (Spinner) findViewById(R.id.since_spinner);
         languageSpinner = (Spinner) findViewById(R.id.language_spinner);
         listView = (ListView) findViewById(R.id.list_view);
+        linearHamburger = (LinearLayout) findViewById(R.id.linear_hamburger);
 
         trendAdapter = new TrendAdapter(this);
 
@@ -66,8 +71,11 @@ public class MainActivity extends AppCompatActivity {
         sinceSpinner.setAdapter(sinceArrayAdapter);
         languageSpinner.setAdapter(languageArrayAdapter);
 
+        clickListener = new OnClickListener(this, linearHamburger);
         sinceItemSelected = new OnItemSelectedListener(handler, sinceArrayAdapter);
         languageItemSelected = new OnItemSelectedListener(handler, languageArrayAdapter);
+
+        linearHamburger.setOnClickListener(clickListener);
         sinceSpinner.setOnItemSelectedListener(sinceItemSelected);
         languageSpinner.setOnItemSelectedListener(languageItemSelected);
     }
