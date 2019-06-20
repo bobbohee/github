@@ -9,19 +9,27 @@ import kr.hs.sdh.github_explore.R;
 public class OnClickListener implements View.OnClickListener {
 
     private Context context;
-    private LinearLayout linearHamburger;
+    private LinearLayout linearMenu;
+    private boolean isMenuVisible = false;
 
     public OnClickListener() { }
 
-    public OnClickListener(Context context, LinearLayout linearHamburger) {
+    public OnClickListener(Context context, LinearLayout linearMenu) {
         this.context = context;
-        this.linearHamburger = linearHamburger;
+        this.linearMenu = linearMenu;
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.linear_hamburger:
+                if (!isMenuVisible) {
+                    linearMenu.setVisibility(View.VISIBLE);
+                    isMenuVisible = true;
+                } else {
+                    linearMenu.setVisibility(View.INVISIBLE);
+                    isMenuVisible = false;
+                }
                 break;
         }
     }

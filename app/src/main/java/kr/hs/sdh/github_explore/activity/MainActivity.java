@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private Spinner languageSpinner;
     private ListView listView;
     private LinearLayout linearHamburger;
+    private LinearLayout linearMenu;
 
     private String since;
     private String trending = "See what the GitHub community is most excited about ";
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         languageSpinner = (Spinner) findViewById(R.id.language_spinner);
         listView = (ListView) findViewById(R.id.list_view);
         linearHamburger = (LinearLayout) findViewById(R.id.linear_hamburger);
+        linearMenu = (LinearLayout) findViewById(R.id.linear_menu);
 
         trendAdapter = new TrendAdapter(this);
 
@@ -71,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         sinceSpinner.setAdapter(sinceArrayAdapter);
         languageSpinner.setAdapter(languageArrayAdapter);
 
-        clickListener = new OnClickListener(this, linearHamburger);
+        clickListener = new OnClickListener(this, linearMenu);
         sinceItemSelected = new OnItemSelectedListener(handler, sinceArrayAdapter);
         languageItemSelected = new OnItemSelectedListener(handler, languageArrayAdapter);
 
