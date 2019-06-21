@@ -5,8 +5,10 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -21,11 +23,16 @@ import kr.hs.sdh.github_explore.listview.TrendListView;
 public class MainActivity extends AppCompatActivity {
 
     private TextView txtTrending;
-    private Spinner sinceSpinner;
-    private Spinner languageSpinner;
+    private Spinner spinSince;
+    private Spinner spinLanguage;
     private ListView listView;
-    private LinearLayout linearHamburger;
-    private LinearLayout linearMenu;
+    private RelativeLayout relHeader;
+    private LinearLayout linHamburger;
+    private LinearLayout linMenu;
+    private LinearLayout linMain;
+    private LinearLayout linUser;
+    private LinearLayout linTrend;
+    private Button btnGoUser;
 
     private String since;
     private String trending = "See what the GitHub community is most excited about ";
@@ -60,26 +67,32 @@ public class MainActivity extends AppCompatActivity {
 
     public void setViews() {
         txtTrending = (TextView) findViewById(R.id.txt_trending);
-        sinceSpinner = (Spinner) findViewById(R.id.since_spinner);
-        languageSpinner = (Spinner) findViewById(R.id.language_spinner);
+        spinSince = (Spinner) findViewById(R.id.since_spinner);
+        spinLanguage = (Spinner) findViewById(R.id.language_spinner);
         listView = (ListView) findViewById(R.id.list_view);
-        linearHamburger = (LinearLayout) findViewById(R.id.linear_hamburger);
-        linearMenu = (LinearLayout) findViewById(R.id.linear_menu);
+        relHeader = (RelativeLayout) findViewById(R.id.rel_header);
+        linHamburger = (LinearLayout) findViewById(R.id.lin_hamburger);
+        linMenu = (LinearLayout) findViewById(R.id.lin_menu);
+        linMain = (LinearLayout) findViewById(R.id.lin_main);
+        linUser = (LinearLayout) findViewById(R.id.lin_user);
+        linTrend = (LinearLayout) findViewById(R.id.lin_trend);
+        btnGoUser = (Button) findViewById(R.id.btn_go_user);
 
         trendAdapter = new TrendAdapter(this);
 
         sinceArrayAdapter = ArrayAdapter.createFromResource(this, R.array.since, android.R.layout.simple_spinner_dropdown_item);
         languageArrayAdapter = ArrayAdapter.createFromResource(this, R.array.language, android.R.layout.simple_spinner_dropdown_item);
-        sinceSpinner.setAdapter(sinceArrayAdapter);
-        languageSpinner.setAdapter(languageArrayAdapter);
+        spinSince.setAdapter(sinceArrayAdapter);
+        spinLanguage.setAdapter(languageArrayAdapter);
 
-        clickListener = new OnClickListener(this, linearMenu);
+        clickListener = new OnClickListener(relHeader, linMenu, linMain, linUser, linTrend);
         sinceItemSelected = new OnItemSelectedListener(handler, sinceArrayAdapter);
         languageItemSelected = new OnItemSelectedListener(handler, languageArrayAdapter);
 
-        linearHamburger.setOnClickListener(clickListener);
-        sinceSpinner.setOnItemSelectedListener(sinceItemSelected);
-        languageSpinner.setOnItemSelectedListener(languageItemSelected);
+        btnGoUser.setOnClickListener(clickListener);
+        linHamburger.setOnClickListener(clickListener);
+        spinSince.setOnItemSelectedListener(sinceItemSelected);
+        spinLanguage.setOnItemSelectedListener(languageItemSelected);
     }
 
     public void setTrending(String since) {

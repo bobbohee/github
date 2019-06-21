@@ -1,33 +1,46 @@
 package kr.hs.sdh.github_explore.listener;
 
-import android.content.Context;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import kr.hs.sdh.github_explore.R;
 
 public class OnClickListener implements View.OnClickListener {
 
-    private Context context;
-    private LinearLayout linearMenu;
+    private RelativeLayout relHeader;
+    private LinearLayout linMenu;
+    private LinearLayout linMain;
+    private LinearLayout linUser;
+    private LinearLayout linTrend;
+
     private boolean isMenuVisible = false;
 
     public OnClickListener() { }
 
-    public OnClickListener(Context context, LinearLayout linearMenu) {
-        this.context = context;
-        this.linearMenu = linearMenu;
+    public OnClickListener(RelativeLayout relHeader, LinearLayout linMenu, LinearLayout linMain, LinearLayout linUser, LinearLayout linTrend) {
+        this.relHeader = relHeader;
+        this.linMenu = linMenu;
+        this.linMain = linMain;
+        this.linUser = linUser;
+        this.linTrend = linTrend;
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.linear_hamburger:
+            case R.id.btn_go_user:
+                relHeader.setVisibility(View.VISIBLE);
+                linMain.setVisibility(View.INVISIBLE);
+                linUser.setVisibility(View.VISIBLE);
+                linTrend.setVisibility(View.INVISIBLE);
+                break;
+            case R.id.lin_hamburger:
                 if (!isMenuVisible) {
-                    linearMenu.setVisibility(View.VISIBLE);
+                    linMenu.setVisibility(View.VISIBLE);
                     isMenuVisible = true;
                 } else {
-                    linearMenu.setVisibility(View.INVISIBLE);
+                    linMenu.setVisibility(View.INVISIBLE);
                     isMenuVisible = false;
                 }
                 break;
