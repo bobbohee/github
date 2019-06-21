@@ -23,6 +23,8 @@ import kr.hs.sdh.github_explore.listview.TrendListView;
 public class MainActivity extends AppCompatActivity {
 
     private TextView txtTrending;
+    private TextView txtMenuExplore;
+    private TextView txtMenuUser;
     private Spinner spinSince;
     private Spinner spinLanguage;
     private ListView listView;
@@ -67,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void setViews() {
         txtTrending = (TextView) findViewById(R.id.txt_trending);
+        txtMenuExplore = (TextView) findViewById(R.id.txt_menu_explore);
+        txtMenuUser = (TextView) findViewById(R.id.txt_menu_user);
         spinSince = (Spinner) findViewById(R.id.since_spinner);
         spinLanguage = (Spinner) findViewById(R.id.language_spinner);
         listView = (ListView) findViewById(R.id.list_view);
@@ -90,6 +94,8 @@ public class MainActivity extends AppCompatActivity {
         languageItemSelected = new OnItemSelectedListener(handler, languageArrayAdapter);
 
         btnGoUser.setOnClickListener(clickListener);
+        txtMenuExplore.setOnClickListener(clickListener);
+        txtMenuUser.setOnClickListener(clickListener);
         linHamburger.setOnClickListener(clickListener);
         spinSince.setOnItemSelectedListener(sinceItemSelected);
         spinLanguage.setOnItemSelectedListener(languageItemSelected);

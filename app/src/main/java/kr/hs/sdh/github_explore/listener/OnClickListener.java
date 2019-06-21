@@ -44,6 +44,20 @@ public class OnClickListener implements View.OnClickListener {
                     isMenuVisible = false;
                 }
                 break;
+            case R.id.txt_menu_explore:
+                linMain.setVisibility(View.INVISIBLE);
+                linUser.setVisibility(View.INVISIBLE);
+                linTrend.setVisibility(View.VISIBLE);
+                linMenu.setVisibility(View.INVISIBLE);
+                isMenuVisible = false;
+                break;
+            case R.id.txt_menu_user:
+                linMain.setVisibility(View.INVISIBLE);
+                linUser.setVisibility(View.VISIBLE);
+                linTrend.setVisibility(View.INVISIBLE);
+                linMenu.setVisibility(View.INVISIBLE);
+                isMenuVisible = false;
+                break;
         }
     }
 

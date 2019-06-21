@@ -262,6 +262,7 @@
                 android:background="#3f4448" />
 
             <TextView
+                android:id="@+id/txt_menu_explore"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
@@ -278,6 +279,7 @@
                 android:background="#3f4448" />
 
             <TextView
+                android:id="@+id/txt_menu_user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
