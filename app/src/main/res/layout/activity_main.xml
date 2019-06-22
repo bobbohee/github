@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#f9f9f9"
     android:orientation="vertical"
     tools:context=".activity.MainActivity">
 
@@ -79,6 +80,7 @@
             android:id="@+id/lin_main"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#f9f9f9"
             android:orientation="horizontal"
             android:visibility="visible">
 
@@ -86,7 +88,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="-72dp"
+                android:layout_marginTop="-32dp"
                 android:orientation="vertical">
 
                 <ImageView
@@ -100,28 +102,29 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="30dp"
-                    android:orientation="horizontal">
+                    android:background="@drawable/edit_user_border"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp">
 
-                    <LinearLayout
-                        android:layout_width="0dp"
+                    <EditText
+                        android:layout_width="180dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="2.5"
-                        android:background="#ffdddd"
-                        android:orientation="horizontal">
+                        android:cursorVisible="false"
+                        android:hint="user name"
+                        android:maxLength="15"
+                        android:theme="@style/EditTextTheme" />
 
-                        <EditText
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:hint="user name"
-                            android:maxLength="15" />
-
-                        <Button
-                            android:id="@+id/btn_go_user"
-                            android:layout_width="50dp"
-                            android:layout_height="wrap_content"
-                            android:text="->" />
-
-                    </LinearLayout>
+                    <Button
+                        android:id="@+id/btn_go_user"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/btn_go_user_border"
+                        android:paddingBottom="10dp"
+                        android:text="→"
+                        android:textColor="#ffffff"
+                        android:textSize="24dp"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -137,8 +140,8 @@
             android:id="@+id/lin_user"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             android:background="#f2f2f2"
+            android:orientation="vertical"
             android:visibility="invisible">
 
         </LinearLayout>

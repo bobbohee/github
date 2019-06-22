@@ -8,4 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- User editText theme. -->
+    <style name="EditTextTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorAccent">@color/colorCursorHover</item>
+        <item name="colorControlNormal">@color/colorCursorNormal</item>
+    </style>
+
 </resources>
