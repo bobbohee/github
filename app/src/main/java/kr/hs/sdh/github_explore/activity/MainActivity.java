@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -22,6 +23,7 @@ import kr.hs.sdh.github_explore.listview.TrendListView;
 
 public class MainActivity extends AppCompatActivity {
 
+    private EditText editUser;
     private TextView txtTrending;
     private TextView txtMenuExplore;
     private TextView txtMenuUser;
@@ -45,11 +47,19 @@ public class MainActivity extends AppCompatActivity {
     private ArrayAdapter sinceArrayAdapter;
     private ArrayAdapter languageArrayAdapter;
 
-    private OnClickListener clickListener;
+    private OnClickListener menuClickListener;
+    private OnClickListener userClickListener;
     private OnItemSelectedListener sinceItemSelected;
     private OnItemSelectedListener languageItemSelected;
 
-    private Handler handler = new Handler() {
+    private Handler userHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+
+        }
+    };
+
+    private Handler trendHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             arrayList = (ArrayList<TrendListView>) msg.obj;
@@ -68,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setViews() {
+        editUser = (EditText) findViewById(R.id.edit_user);
         txtTrending = (TextView) findViewById(R.id.txt_trending);
         txtMenuExplore = (TextView) findViewById(R.id.txt_menu_explore);
         txtMenuUser = (TextView) findViewById(R.id.txt_menu_user);
@@ -89,14 +100,15 @@ public class MainActivity extends AppCompatActivity {
         spinSince.setAdapter(sinceArrayAdapter);
         spinLanguage.setAdapter(languageArrayAdapter);
 
-        clickListener = new OnClickListener(relHeader, linMenu, linMain, linUser, linTrend);
-        sinceItemSelected = new OnItemSelectedListener(handler, sinceArrayAdapter);
-        languageItemSelected = new OnItemSelectedListener(handler, languageArrayAdapter);
+        menuClickListener = new OnClickListener(linMenu, linMain, linUser, linTrend);
+        userClickListener = new OnClickListener(userHandler, editUser, relHeader, linMenu, linMain, linUser, linTrend);
+        sinceItemSelected = new OnItemSelectedListener(trendHandler, sinceArrayAdapter);
+        languageItemSelected = new OnItemSelectedListener(trendHandler, languageArrayAdapter);
 
-        btnGoUser.setOnClickListener(clickListener);
-        txtMenuExplore.setOnClickListener(clickListener);
-        txtMenuUser.setOnClickListener(clickListener);
-        linHamburger.setOnClickListener(clickListener);
+        btnGoUser.setOnClickListener(userClickListener);
+        txtMenuExplore.setOnClickListener(menuClickListener);
+        txtMenuUser.setOnClickListener(menuClickListener);
+        linHamburger.setOnClickListener(menuClickListener);
         spinSince.setOnItemSelectedListener(sinceItemSelected);
         spinLanguage.setOnItemSelectedListener(languageItemSelected);
     }

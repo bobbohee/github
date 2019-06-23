@@ -1,29 +1,45 @@
 package kr.hs.sdh.github_explore.listener;
 
+import android.os.Handler;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import kr.hs.sdh.github_explore.R;
+import kr.hs.sdh.github_explore.thread.UserThread;
 
 public class OnClickListener implements View.OnClickListener {
 
+    private Handler userHandler;
+    private EditText editUser;
     private RelativeLayout relHeader;
     private LinearLayout linMenu;
     private LinearLayout linMain;
     private LinearLayout linUser;
     private LinearLayout linTrend;
+    private String strUser;
 
     private boolean isMenuVisible = false;
 
     public OnClickListener() { }
 
-    public OnClickListener(RelativeLayout relHeader, LinearLayout linMenu, LinearLayout linMain, LinearLayout linUser, LinearLayout linTrend) {
+    public OnClickListener(LinearLayout linMenu, LinearLayout linMain, LinearLayout linUser, LinearLayout linTrend) {
+        this.linMenu = linMenu;
+        this.linMain = linMain;
+        this.linUser = linUser;
+        this.linTrend = linTrend;
+    }
+
+    public OnClickListener(Handler userHandler, EditText editUser, RelativeLayout relHeader, LinearLayout linMenu, LinearLayout linMain, LinearLayout linUser, LinearLayout linTrend) {
+        this.userHandler = userHandler;
+        this.editUser = editUser;
         this.relHeader = relHeader;
         this.linMenu = linMenu;
         this.linMain = linMain;
         this.linUser = linUser;
         this.linTrend = linTrend;
+        this.strUser = editUser.getText().toString();
     }
 
     @Override
@@ -34,6 +50,12 @@ public class OnClickListener implements View.OnClickListener {
                 linMain.setVisibility(View.INVISIBLE);
                 linUser.setVisibility(View.VISIBLE);
                 linTrend.setVisibility(View.INVISIBLE);
+                strUser = editUser.getText().toString();
+
+                UserThread userThread = new UserThread(userHandler, strUser);
+                Runnable runnable = userThread;
+                Thread thread = new Thread(runnable);
+                thread.start();
                 break;
             case R.id.lin_hamburger:
                 if (!isMenuVisible) {
