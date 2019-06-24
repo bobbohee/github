@@ -1,7 +1,10 @@
 package kr.hs.sdh.github_explore.listener;
 
+import android.content.Context;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -11,6 +14,7 @@ import kr.hs.sdh.github_explore.thread.UserThread;
 
 public class OnClickListener implements View.OnClickListener {
 
+    private Context context;
     private Handler userHandler;
     private EditText editUser;
     private RelativeLayout relHeader;
@@ -19,6 +23,7 @@ public class OnClickListener implements View.OnClickListener {
     private LinearLayout linUser;
     private LinearLayout linTrend;
     private String strUser;
+    private InputMethodManager imm;
 
     private boolean isMenuVisible = false;
 
@@ -31,7 +36,8 @@ public class OnClickListener implements View.OnClickListener {
         this.linTrend = linTrend;
     }
 
-    public OnClickListener(Handler userHandler, EditText editUser, RelativeLayout relHeader, LinearLayout linMenu, LinearLayout linMain, LinearLayout linUser, LinearLayout linTrend) {
+    public OnClickListener(Context context, Handler userHandler, EditText editUser, RelativeLayout relHeader, LinearLayout linMenu, LinearLayout linMain, LinearLayout linUser, LinearLayout linTrend) {
+        this.context = context;
         this.userHandler = userHandler;
         this.editUser = editUser;
         this.relHeader = relHeader;
@@ -46,6 +52,9 @@ public class OnClickListener implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_go_user:
+                imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(editUser.getWindowToken(), 0);
+
                 relHeader.setVisibility(View.VISIBLE);
                 linMain.setVisibility(View.INVISIBLE);
                 linUser.setVisibility(View.VISIBLE);

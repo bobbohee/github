@@ -1,9 +1,7 @@
 package kr.hs.sdh.github_explore.thread;
 
-import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -17,15 +15,16 @@ import kr.hs.sdh.github_explore.listview.TrendListView;
 
 public class TrendThread implements Runnable {
 
+    private Handler handler;
+    private ArrayList<TrendListView> arrayList;
+
     private String since = "daily";
     private String language = "";
     private String url;
     private boolean flag;
-    private ArrayList<TrendListView> arrayList;
-    private Context context;
-    private Handler handler;
 
-    public TrendThread() { }
+    public TrendThread() {
+    }
 
     public TrendThread(Handler handler) {
         this.handler = handler;
@@ -36,14 +35,14 @@ public class TrendThread implements Runnable {
         flag = true;
         arrayList = new ArrayList<>();
 
-        while(flag) {
+        while (flag) {
             try {
                 url = "https://github.com/trending/" + language + "?since=" + since;
                 Document doc = Jsoup.connect(url).get();
                 Elements articles = doc.getElementsByTag("article");
                 flag = false;
 
-                for(Element article: articles) {
+                for (Element article : articles) {
                     TrendListView trendListView = new TrendListView();
 
                     // require -> developer, repository

@@ -16,7 +16,6 @@ import kr.hs.sdh.github_explore.listview.UserRepoListView;
 
 public class UserThread implements Runnable {
 
-    private Context context;
     private Handler handler;
     private String url;
     private String user;

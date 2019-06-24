@@ -14,16 +14,17 @@ import java.util.ArrayList;
 
 import kr.hs.sdh.github_explore.R;
 import kr.hs.sdh.github_explore.listview.TrendListView;
+import kr.hs.sdh.github_explore.listview.UserRepoListView;
 
-public class TrendAdapter extends BaseAdapter {
+public class UserAdapter extends BaseAdapter {
 
     private Context context;
-    private ArrayList<TrendListView> arrayList = new ArrayList<>();
+    private ArrayList<UserRepoListView> arrayList = new ArrayList<>();
 
-    public TrendAdapter() {
+    public UserAdapter() {
     }
 
-    public TrendAdapter(Context context) {
+    public UserAdapter(Context context) {
         this.context = context;
     }
 
@@ -60,7 +61,7 @@ public class TrendAdapter extends BaseAdapter {
         TextView txtShare = (TextView) convertView.findViewById(R.id.txt_share);
         ImageView imgLanguage = (ImageView) convertView.findViewById(R.id.img_language);
 
-        TrendListView trendListview = arrayList.get(position);
+        UserRepoListView userRepoListView = arrayList.get(position);
 
         txtDeveloper.setText(trendListview.getDeveloper());
         txtRepository.setText(trendListview.getRepository());

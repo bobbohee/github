@@ -23,13 +23,13 @@ import kr.hs.sdh.github_explore.listview.TrendListView;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Spinner spinSince;
+    private Spinner spinLanguage;
+    private ListView listView;
     private EditText editUser;
     private TextView txtTrending;
     private TextView txtMenuExplore;
     private TextView txtMenuUser;
-    private Spinner spinSince;
-    private Spinner spinLanguage;
-    private ListView listView;
     private RelativeLayout relHeader;
     private LinearLayout linHamburger;
     private LinearLayout linMenu;
@@ -42,7 +42,8 @@ public class MainActivity extends AppCompatActivity {
     private String trending = "See what the GitHub community is most excited about ";
 
     private TrendAdapter trendAdapter;
-    private ArrayList<TrendListView> arrayList;
+
+    private ArrayList<TrendListView> trendArrayList;
 
     private ArrayAdapter sinceArrayAdapter;
     private ArrayAdapter languageArrayAdapter;
@@ -62,10 +63,10 @@ public class MainActivity extends AppCompatActivity {
     private Handler trendHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            arrayList = (ArrayList<TrendListView>) msg.obj;
-            trendAdapter.addItem(arrayList);
+            trendArrayList = (ArrayList<TrendListView>) msg.obj;
+            trendAdapter.addItem(trendArrayList);
             listView.setAdapter(trendAdapter);
-            setTrending(arrayList.get(0).getSince());
+            setTrending(trendArrayList.get(0).getSince());
         }
     };
 
@@ -101,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
         spinLanguage.setAdapter(languageArrayAdapter);
 
         menuClickListener = new OnClickListener(linMenu, linMain, linUser, linTrend);
-        userClickListener = new OnClickListener(userHandler, editUser, relHeader, linMenu, linMain, linUser, linTrend);
+        userClickListener = new OnClickListener(this, userHandler, editUser, relHeader, linMenu, linMain, linUser, linTrend);
         sinceItemSelected = new OnItemSelectedListener(trendHandler, sinceArrayAdapter);
         languageItemSelected = new OnItemSelectedListener(trendHandler, languageArrayAdapter);
 
@@ -109,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
         txtMenuExplore.setOnClickListener(menuClickListener);
         txtMenuUser.setOnClickListener(menuClickListener);
         linHamburger.setOnClickListener(menuClickListener);
+
         spinSince.setOnItemSelectedListener(sinceItemSelected);
         spinLanguage.setOnItemSelectedListener(languageItemSelected);
     }
