@@ -13,7 +13,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import kr.hs.sdh.github_explore.R;
-import kr.hs.sdh.github_explore.listview.TrendListView;
 import kr.hs.sdh.github_explore.listview.UserRepoListView;
 
 public class UserAdapter extends BaseAdapter {
@@ -50,31 +49,25 @@ public class UserAdapter extends BaseAdapter {
 
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) CONTEXT.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.item_trend, parent, false);
+            convertView = inflater.inflate(R.layout.item_user, parent, false);
         }
 
-        TextView txtDeveloper = (TextView) convertView.findViewById(R.id.txt_developer);
         TextView txtRepository = (TextView) convertView.findViewById(R.id.txt_repository);
         TextView txtDescription = (TextView) convertView.findViewById(R.id.txt_description);
         TextView txtLanguage = (TextView) convertView.findViewById(R.id.txt_language);
-        TextView txtStar = (TextView) convertView.findViewById(R.id.txt_star);
-        TextView txtShare = (TextView) convertView.findViewById(R.id.txt_share);
         ImageView imgLanguage = (ImageView) convertView.findViewById(R.id.img_language);
 
         UserRepoListView userRepoListView = arrayList.get(position);
 
-        txtDeveloper.setText(trendListview.getDeveloper());
-        txtRepository.setText(trendListview.getRepository());
-        txtDescription.setText(trendListview.getDescription());
-        txtLanguage.setText(trendListview.getLanguage());
-        txtStar.setText(trendListview.getStar());
-        txtShare.setText(trendListview.getShare());
-        imgLanguage.setImageDrawable(setImgLanguage(trendListview.getLanguage()));
+        txtRepository.setText(userRepoListView.getRepository());
+        txtDescription.setText(userRepoListView.getDescription());
+        txtLanguage.setText(userRepoListView.getLanguage());
+        imgLanguage.setImageDrawable(setImgLanguage(userRepoListView.getLanguage()));
 
         return convertView;
     }
 
-    public void addItem(ArrayList<TrendListView> arrayList) {
+    public void addItem(ArrayList<UserRepoListView> arrayList) {
         this.arrayList = arrayList;
     }
 

@@ -2,9 +2,9 @@ package kr.hs.sdh.github_explore.listview;
 
 public class UserRepoListView {
 
-    private String repository;
-    private String description;
-    private String language;
+    private String repository = "";
+    private String description = "";
+    private String language = "";
 
     public String getRepository() {
         return repository;

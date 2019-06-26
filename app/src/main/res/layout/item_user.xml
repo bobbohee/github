@@ -8,7 +8,7 @@
     android:background="@drawable/item_user_background">
 
     <TextView
-        android:id="@+id/txt_developer"
+        android:id="@+id/txt_repository"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="2.5dp"

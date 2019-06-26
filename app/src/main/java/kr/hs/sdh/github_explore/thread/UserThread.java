@@ -1,6 +1,5 @@
 package kr.hs.sdh.github_explore.thread;
 
-import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 
@@ -10,13 +9,13 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import kr.hs.sdh.github_explore.listview.UserCardListView;
 import kr.hs.sdh.github_explore.listview.UserRepoListView;
 
 public class UserThread implements Runnable {
 
-    private Handler handler;
     private String url;
     private String user;
 
@@ -27,11 +26,18 @@ public class UserThread implements Runnable {
     private String mail = "";
     private String link = "";
 
+    private Handler userCardHandler;
+    private Handler userRepoHandler;
+
+    private UserCardListView userCardListView;
+    private ArrayList<UserRepoListView> arrayList;
+
     public UserThread() {
     }
 
-    public UserThread(Handler handler, String user) {
-        this.handler = handler;
+    public UserThread(Handler userCardHandler, Handler userRepoHandler, String user) {
+        this.userCardHandler = userCardHandler;
+        this.userRepoHandler = userRepoHandler;
         this.user = user;
     }
 
@@ -41,7 +47,7 @@ public class UserThread implements Runnable {
             url = "https://github.com/" + user;
             Document doc = Jsoup.connect(url).get();
 
-            UserCardListView userCardListView = new UserCardListView();
+            userCardListView = new UserCardListView();
 
             // not require -> fullName
             Elements vcardFullnames = doc.getElementsByClass("vcard-fullname");
@@ -78,6 +84,11 @@ public class UserThread implements Runnable {
                 }
             }
 
+            Message userCardMsg = new Message();
+            userCardMsg.obj = userCardListView;
+            userCardHandler.sendMessage(userCardMsg);
+
+            arrayList = new ArrayList<>();
             Elements pinnedItems = doc.getElementsByClass("pinned-item-list-item-content");
             for (Element pinnedItem : pinnedItems) {
                 UserRepoListView userRepoListView = new UserRepoListView();
@@ -96,13 +107,17 @@ public class UserThread implements Runnable {
                 Elements spans = pinnedItem.getElementsByClass("d-inline-block");
                 String language = spans.size() > 0 ? spans.get(0).getElementsByTag("span").get(2).text() : "";
                 userRepoListView.setLanguage(language);
+
+                arrayList.add(userRepoListView);
             }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        Message msg = new Message();
-        handler.sendMessage(msg);
+        Message userRepoMsg = new Message();
+        userRepoMsg.obj = arrayList;
+        userRepoHandler.sendMessage(userRepoMsg);
     }
 
 }

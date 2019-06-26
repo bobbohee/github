@@ -2,7 +2,6 @@ package kr.hs.sdh.github_explore.listener;
 
 import android.content.Context;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -15,7 +14,8 @@ import kr.hs.sdh.github_explore.thread.UserThread;
 public class OnClickListener implements View.OnClickListener {
 
     private Context context;
-    private Handler userHandler;
+    private Handler userCardHandler;
+    private Handler userRepoHandler;
     private EditText editUser;
     private RelativeLayout relHeader;
     private LinearLayout linMenu;
@@ -36,9 +36,10 @@ public class OnClickListener implements View.OnClickListener {
         this.linTrend = linTrend;
     }
 
-    public OnClickListener(Context context, Handler userHandler, EditText editUser, RelativeLayout relHeader, LinearLayout linMenu, LinearLayout linMain, LinearLayout linUser, LinearLayout linTrend) {
+    public OnClickListener(Context context, Handler userCardHandler, Handler userRepoHandler, EditText editUser, RelativeLayout relHeader, LinearLayout linMenu, LinearLayout linMain, LinearLayout linUser, LinearLayout linTrend) {
         this.context = context;
-        this.userHandler = userHandler;
+        this.userCardHandler = userCardHandler;
+        this.userRepoHandler = userRepoHandler;
         this.editUser = editUser;
         this.relHeader = relHeader;
         this.linMenu = linMenu;
@@ -61,7 +62,7 @@ public class OnClickListener implements View.OnClickListener {
                 linTrend.setVisibility(View.INVISIBLE);
                 strUser = editUser.getText().toString();
 
-                UserThread userThread = new UserThread(userHandler, strUser);
+                UserThread userThread = new UserThread(userCardHandler, userRepoHandler, strUser);
                 Runnable runnable = userThread;
                 Thread thread = new Thread(runnable);
                 thread.start();

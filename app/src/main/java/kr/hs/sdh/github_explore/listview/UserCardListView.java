@@ -2,12 +2,12 @@ package kr.hs.sdh.github_explore.listview;
 
 public class UserCardListView {
 
-    private String fullName;
-    private String userName;
-    private String organization;
-    private String location;
-    private String mail;
-    private String link;
+    private String fullName = "";
+    private String userName = "";
+    private String organization = "";
+    private String location = "";
+    private String mail = "";
+    private String link = "";
 
     public String getFullName() {
         return fullName;
