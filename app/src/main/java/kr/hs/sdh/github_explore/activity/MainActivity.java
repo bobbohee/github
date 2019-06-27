@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView txtLocation;
     private TextView txtMail;
     private TextView txtLink;
+    private TextView txtSignOut;
     private RelativeLayout relHeader;
     private LinearLayout linHamburger;
     private LinearLayout linMenu;
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
     private OnClickListener menuClickListener;
     private OnClickListener userClickListener;
+
     private OnItemSelectedListener sinceItemSelected;
     private OnItemSelectedListener languageItemSelected;
 
@@ -117,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
         txtLocation = (TextView) findViewById(R.id.txt_location);
         txtMail = (TextView) findViewById(R.id.txt_mail);
         txtLink = (TextView) findViewById(R.id.txt_link);
+        txtSignOut = (TextView) findViewById(R.id.txt_sign_out);
 
         spinSince = (Spinner) findViewById(R.id.since_spinner);
         spinLanguage = (Spinner) findViewById(R.id.language_spinner);
@@ -147,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
         txtMenuExplore.setOnClickListener(menuClickListener);
         txtMenuUser.setOnClickListener(menuClickListener);
         linHamburger.setOnClickListener(menuClickListener);
+        txtSignOut.setOnClickListener(menuClickListener);
 
         spinSince.setOnItemSelectedListener(sinceItemSelected);
         spinLanguage.setOnItemSelectedListener(languageItemSelected);
