@@ -1,11 +1,9 @@
 package kr.hs.sdh.github_explore.activity;
 
-import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -81,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
             txtLocation.setText(userCardListView.getLocation());
             txtLink.setText(userCardListView.getLink());
             imgUserPhoto.setImageDrawable(userCardListView.getUserPhoto());
+            txtMenuUser.setText(userCardListView.getUserName());
         }
     };
 

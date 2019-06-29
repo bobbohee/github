@@ -27,7 +27,8 @@ public class OnClickListener implements View.OnClickListener {
 
     private boolean isMenuVisible = false;
 
-    public OnClickListener() { }
+    public OnClickListener() {
+    }
 
     public OnClickListener(LinearLayout linMenu, LinearLayout linMain, LinearLayout linUser, LinearLayout linTrend) {
         this.linMenu = linMenu;

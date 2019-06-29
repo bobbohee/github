@@ -14,7 +14,8 @@ public class OnItemSelectedListener implements AdapterView.OnItemSelectedListene
     private ArrayAdapter arrayAdapter;
     private Handler handler;
 
-    public OnItemSelectedListener() { }
+    public OnItemSelectedListener() {
+    }
 
     public OnItemSelectedListener(Handler handler, ArrayAdapter arrayAdapter) {
         this.handler = handler;
@@ -76,7 +77,6 @@ public class OnItemSelectedListener implements AdapterView.OnItemSelectedListene
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-
     }
 
 }

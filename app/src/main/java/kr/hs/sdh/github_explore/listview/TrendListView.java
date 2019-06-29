@@ -14,52 +14,50 @@ public class TrendListView {
         return since;
     }
 
-    public void setSince(String since) {
-        this.since = since;
-    }
-
     public String getDeveloper() {
         return developer;
-    }
-
-    public void setDeveloper(String developer) {
-        this.developer = developer;
     }
 
     public String getRepository() {
         return repository;
     }
 
-    public void setRepository(String repository) {
-        this.repository = repository;
-    }
-
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getLanguage() {
         return language;
     }
 
-    public void setLanguage(String language) {
-        this.language = language;
-    }
-
     public String getStar() {
         return star;
     }
 
-    public void setStar(String star) {
-        this.star = star;
-    }
-
     public String getShare() {
         return share;
+    }
+
+    public void setSince(String since) { this.since = since; }
+
+    public void setDeveloper(String developer) {
+        this.developer = developer;
+    }
+
+    public void setRepository(String repository) {
+        this.repository = repository;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    public void setStar(String star) {
+        this.star = star;
     }
 
     public void setShare(String share) {

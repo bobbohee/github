@@ -7,7 +7,8 @@ public class IntroThread implements Runnable {
 
     private Handler handler;
 
-    public IntroThread() { }
+    public IntroThread() {
+    }
 
     public IntroThread(Handler handler) {
         this.handler = handler;

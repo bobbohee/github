@@ -54,4 +54,5 @@ public class UserCardListView {
     }
 
     public void setUserPhoto(Drawable userPhoto) { this.userPhoto = userPhoto; }
+
 }

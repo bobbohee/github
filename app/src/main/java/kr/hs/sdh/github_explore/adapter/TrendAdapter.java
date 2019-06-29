@@ -27,7 +27,6 @@ public class TrendAdapter extends BaseAdapter {
         this.context = context;
     }
 
-
     @Override
     public int getCount() {
         return arrayList.size();
