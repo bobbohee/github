@@ -1,13 +1,15 @@
 package kr.hs.sdh.github_explore.listview;
 
+import android.graphics.drawable.Drawable;
+
 public class UserCardListView {
 
     private String fullName = "";
     private String userName = "";
     private String organization = "";
     private String location = "";
-    private String mail = "";
     private String link = "";
+    private Drawable userPhoto;
 
     public String getFullName() {
         return fullName;
@@ -25,13 +27,11 @@ public class UserCardListView {
         return location;
     }
 
-    public String getMail() {
-        return mail;
-    }
-
     public String getLink() {
         return link;
     }
+
+    public Drawable getUserPhoto() { return userPhoto; }
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
@@ -49,12 +49,9 @@ public class UserCardListView {
         this.location = location;
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
-
     public void setLink(String link) {
         this.link = link;
     }
 
+    public void setUserPhoto(Drawable userPhoto) { this.userPhoto = userPhoto; }
 }

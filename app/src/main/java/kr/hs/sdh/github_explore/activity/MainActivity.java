@@ -1,5 +1,6 @@
 package kr.hs.sdh.github_explore.activity;
 
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -39,9 +41,9 @@ public class MainActivity extends AppCompatActivity {
     private TextView txtUserName;
     private TextView txtOrganization;
     private TextView txtLocation;
-    private TextView txtMail;
     private TextView txtLink;
     private TextView txtSignOut;
+    private ImageView imgUserPhoto;
     private RelativeLayout relHeader;
     private LinearLayout linHamburger;
     private LinearLayout linMenu;
@@ -64,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
     private OnClickListener menuClickListener;
     private OnClickListener userClickListener;
+    private OnClickListener signOutClickListener;
 
     private OnItemSelectedListener sinceItemSelected;
     private OnItemSelectedListener languageItemSelected;
@@ -76,8 +79,8 @@ public class MainActivity extends AppCompatActivity {
             txtUserName.setText(userCardListView.getUserName());
             txtOrganization.setText(userCardListView.getOrganization());
             txtLocation.setText(userCardListView.getLocation());
-            txtMail.setText(userCardListView.getMail());
             txtLink.setText(userCardListView.getLink());
+            imgUserPhoto.setImageDrawable(userCardListView.getUserPhoto());
         }
     };
 
@@ -117,9 +120,9 @@ public class MainActivity extends AppCompatActivity {
         txtUserName = (TextView) findViewById(R.id.txt_user_name);
         txtOrganization = (TextView) findViewById(R.id.txt_organization);
         txtLocation = (TextView) findViewById(R.id.txt_location);
-        txtMail = (TextView) findViewById(R.id.txt_mail);
         txtLink = (TextView) findViewById(R.id.txt_link);
         txtSignOut = (TextView) findViewById(R.id.txt_sign_out);
+        imgUserPhoto = (ImageView) findViewById(R.id.img_user_photo);
 
         spinSince = (Spinner) findViewById(R.id.since_spinner);
         spinLanguage = (Spinner) findViewById(R.id.language_spinner);
@@ -143,6 +146,8 @@ public class MainActivity extends AppCompatActivity {
 
         menuClickListener = new OnClickListener(linMenu, linMain, linUser, linTrend);
         userClickListener = new OnClickListener(this, userCardHandler, userRepoHandler, editUser, relHeader, linMenu, linMain, linUser, linTrend);
+        signOutClickListener = new OnClickListener(editUser, relHeader, linMenu, linMain, linUser, linTrend);
+
         sinceItemSelected = new OnItemSelectedListener(trendHandler, sinceArrayAdapter);
         languageItemSelected = new OnItemSelectedListener(trendHandler, languageArrayAdapter);
 
@@ -150,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
         txtMenuExplore.setOnClickListener(menuClickListener);
         txtMenuUser.setOnClickListener(menuClickListener);
         linHamburger.setOnClickListener(menuClickListener);
-        txtSignOut.setOnClickListener(menuClickListener);
+        txtSignOut.setOnClickListener(signOutClickListener);
 
         spinSince.setOnItemSelectedListener(sinceItemSelected);
         spinLanguage.setOnItemSelectedListener(languageItemSelected);

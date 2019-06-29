@@ -29,12 +29,16 @@ public class OnClickListener implements View.OnClickListener {
 
     public OnClickListener() { }
 
-    public OnClickListener(Context context, LinearLayout linMenu) {
-        this.context = context;
+    public OnClickListener(LinearLayout linMenu, LinearLayout linMain, LinearLayout linUser, LinearLayout linTrend) {
         this.linMenu = linMenu;
+        this.linMain = linMain;
+        this.linUser = linUser;
+        this.linTrend = linTrend;
     }
 
-    public OnClickListener(LinearLayout linMenu, LinearLayout linMain, LinearLayout linUser, LinearLayout linTrend) {
+    public OnClickListener(EditText editUser, RelativeLayout relHeader, LinearLayout linMenu, LinearLayout linMain, LinearLayout linUser, LinearLayout linTrend) {
+        this.editUser = editUser;
+        this.relHeader = relHeader;
         this.linMenu = linMenu;
         this.linMain = linMain;
         this.linUser = linUser;
@@ -96,6 +100,8 @@ public class OnClickListener implements View.OnClickListener {
                 isMenuVisible = false;
                 break;
             case R.id.txt_sign_out:
+                editUser.setText("");
+                relHeader.setVisibility(View.INVISIBLE);
                 linMain.setVisibility(View.VISIBLE);
                 linUser.setVisibility(View.INVISIBLE);
                 linTrend.setVisibility(View.INVISIBLE);

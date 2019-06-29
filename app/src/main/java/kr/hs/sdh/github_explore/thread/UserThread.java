@@ -1,5 +1,6 @@
 package kr.hs.sdh.github_explore.thread;
 
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
 
@@ -9,6 +10,9 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URI;
+import java.net.URL;
 import java.util.ArrayList;
 
 import kr.hs.sdh.github_explore.listview.UserCardListView;
@@ -49,6 +53,14 @@ public class UserThread implements Runnable {
 
             userCardListView = new UserCardListView();
 
+            // require -> userPhoto
+            Element uPhoto = doc.getElementsByClass("u-photo").get(0);
+            Element img = uPhoto.getElementsByTag("img").get(0);
+            String src = img.attr("src");
+            InputStream is = (InputStream) new URL(src).getContent();
+            Drawable userPhoto = Drawable.createFromStream(is, "src name");
+            userCardListView.setUserPhoto(userPhoto);
+
             // not require -> fullName
             Elements vcardFullnames = doc.getElementsByClass("vcard-fullname");
             fullName = vcardFullnames.size() > 0 ? vcardFullnames.get(0).text() : "";
@@ -72,10 +84,6 @@ public class UserThread implements Runnable {
                     case "homeLocation":
                         location = itemprop.getElementsByTag("span").get(0).text();
                         userCardListView.setLocation(location);
-                        break;
-                    case "email":
-                        mail = itemprop.getElementsByTag("a").get(0).text();
-                        userCardListView.setMail(mail);
                         break;
                     case "url":
                         link = itemprop.getElementsByTag("a").get(0).text();

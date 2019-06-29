@@ -113,6 +113,7 @@
                         android:cursorVisible="false"
                         android:hint="user name"
                         android:maxLength="15"
+                        android:maxLines="1"
                         android:theme="@style/EditTextTheme" />
 
                     <Button
@@ -150,7 +151,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="30dp">
+                android:padding="20dp">
 
                 <!-- profile image, name -->
                 <LinearLayout
@@ -160,33 +161,32 @@
                     android:orientation="horizontal">
 
                     <ImageView
+                        android:id="@+id/img_user_photo"
                         android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_marginRight="20dp"
-                        android:src="@drawable/ic_launcher_background" />
+                        android:layout_height="100dp" />
 
                     <!-- name -->
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:orientation="vertical">
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:paddingLeft="20dp"
+                        android:paddingTop="10dp">
 
                         <TextView
                             android:id="@+id/txt_full_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Park BoHee"
+                            android:layout_marginBottom="2.5dp"
                             android:textColor="#24292e"
-                            android:textSize="30dp" />
+                            android:textSize="28dp" />
 
                         <TextView
                             android:id="@+id/txt_user_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="park-bohee"
                             android:textColor="#666666"
-                            android:textSize="26dp" />
+                            android:textSize="24dp" />
 
                     </LinearLayout>
 
@@ -220,7 +220,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="-2dp"
-                                android:text="Seoul Digitech High School"
                                 android:textColor="#24292e"
                                 android:textSize="18dp" />
 
@@ -243,31 +242,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="-2dp"
-                                android:text="Eunpyeong-gu, Seoul, Korea"
                                 android:textColor="#24292e"
-                                android:textSize="18dp" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="7.5dp"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="22dp"
-                                android:layout_height="22dp"
-                                android:layout_marginRight="10dp"
-                                android:src="@drawable/mail" />
-
-                            <TextView
-                                android:id="@+id/txt_mail"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="-2dp"
-                                android:text="parkbohee0705@gmail.com"
-                                android:textColor="#0366d6"
                                 android:textSize="18dp" />
 
                         </LinearLayout>
@@ -288,7 +263,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="-2dp"
-                                android:text="https://boheeee.tistory.com"
                                 android:textColor="#0366d6"
                                 android:textSize="18dp" />
 
