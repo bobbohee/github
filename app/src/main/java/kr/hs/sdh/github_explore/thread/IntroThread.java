@@ -18,7 +18,7 @@ public class IntroThread implements Runnable {
     public void run() {
         Message msg = new Message();
         try {
-            Thread.sleep(3000);
+            Thread.sleep(1000);
             msg.what = 1;
             handler.sendEmptyMessage(msg.what);
         } catch (InterruptedException e) {
